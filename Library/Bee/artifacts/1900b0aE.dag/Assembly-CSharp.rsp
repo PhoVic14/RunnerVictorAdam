@@ -357,6 +357,7 @@
 "Assets/Spripts/GameManager.cs"
 "Assets/Spripts/GroundSpawner.cs"
 "Assets/Spripts/GroundTile.cs"
+"Assets/Spripts/MainMenu.cs"
 "Assets/Spripts/Obstacle.cs"
 "Assets/Spripts/PlayerMovement.cs"
 -langversion:9.0
