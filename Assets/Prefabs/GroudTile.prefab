@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6042463068260115537}
   - component: {fileID: 8595479635881449860}
   - component: {fileID: 2891781513714708366}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 0fe09d884d05833478278bfad09bb050, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 4231254182460695194}
   - component: {fileID: 2713625793555157972}
   - component: {fileID: 1382651699810564368}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GroudTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92d9d6124ef1d47408430b5f023d4bab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coinPrefab: {fileID: 7822003520714280470, guid: 35e2c45f7a78df04c9d880d5dedb19ad, type: 3}
   obstaclePrefab: {fileID: 3950984899076090304, guid: 70f08e29f275bd54fa673718669aaec5, type: 3}
+  tallObstaclePrefab: {fileID: 3950984899076090304, guid: 481e4ea8e7f67d4488a10d7ae5824eea, type: 3}
+  tallObstacleChance: 0.2
 --- !u!1 &1786834871305988925
 GameObject:
   m_ObjectHideFlags: 0
@@ -187,7 +190,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1522780544158900259}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: NextSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -218,7 +221,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5599557396565827717}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ObstacleSpawnMiddle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -249,7 +252,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 495234912305217894}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ObstacleSpawnRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -280,7 +283,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3727380682513312058}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ObstacleSpawnLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
