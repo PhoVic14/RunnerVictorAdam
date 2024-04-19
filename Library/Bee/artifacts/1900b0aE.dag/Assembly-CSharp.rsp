@@ -354,10 +354,12 @@
 -analyzer:"C:/Program Files/Unity/Hub/Editor/2022.3.9f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 "Assets/Spripts/CameraFollow.cs"
 "Assets/Spripts/Coin.cs"
+"Assets/Spripts/Ennemies.cs"
 "Assets/Spripts/GameManager.cs"
 "Assets/Spripts/GroundSpawner.cs"
 "Assets/Spripts/GroundTile.cs"
 "Assets/Spripts/MainMenu.cs"
+"Assets/Spripts/Mur.cs"
 "Assets/Spripts/Obstacle.cs"
 "Assets/Spripts/PlayerMovement.cs"
 -langversion:9.0

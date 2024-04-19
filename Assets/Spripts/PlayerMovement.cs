@@ -5,9 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
-
     bool alive = true;
-
+    bool hasJumped = false;
+    public int position = 0;
     public float speed = 5;
     [SerializeField] Rigidbody rb;
 
@@ -22,18 +22,26 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         if (!alive) return;
- 
+        
         Vector3 forwardMove = transform.forward * speed * Time.fixedDeltaTime;
         Vector3 horizontalMove = transform.right * horizontalInput * speed * Time.fixedDeltaTime * horizontalMultiplier;
+        Vector3 position = transform.right * horizontalInput * speed * Time.fixedDeltaTime * horizontalMultiplier;
         rb.MovePosition(rb.position + forwardMove + horizontalMove);
     }
+
     void Update()
     {
         horizontalInput = Input.GetAxis("Horizontal");
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && !hasJumped && IsGrounded()) // Vérifier si le joueur peut sauter
         {
             Jump();
+            hasJumped = true;
+        }
+
+        if (IsGrounded()) // Réinitialiser hasJumped lorsque le joueur touche le sol
+        {
+            hasJumped = false;
         }
 
         if (transform.position.y < -5)
@@ -55,9 +63,19 @@ public class PlayerMovement : MonoBehaviour
 
     void Jump()
     {
-        float height = GetComponent<Collider>().bounds.size.y;
-        bool isGrounded = Physics.Raycast(transform.position, Vector3.down, (height / 2) + 0.1f, groundMask);
-
         rb.AddForce(Vector3.up * jumpForce);
     }
+
+    bool IsGrounded()
+    {
+        float height = GetComponent<Collider>().bounds.size.y;
+        bool grounded = Physics.Raycast(transform.position, Vector3.down, (height / 2) + 0.1f, groundMask);
+        return grounded;
+    }
+    public Rigidbody GetRigidbody()
+    {
+        return rb;
+    }
+
+
 }
