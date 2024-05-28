@@ -8,24 +8,28 @@ public class GroundTile : MonoBehaviour
     [SerializeField] GameObject coinPrefab;
     [SerializeField] GameObject obstaclePrefab;
     [SerializeField] GameObject tallObstaclePrefab;
+    [SerializeField] GameObject movingObstaclePrefab;
+    [SerializeField] GameObject verticalMovingObstaclePrefab;
+    [SerializeField] GameObject forwardBackwardMovingObstaclePrefab; // Ajoutez cette ligne
     [SerializeField] float tallObstacleChance = 0.2f;
-    // Start is called before the first frame update
+    [SerializeField] float movingObstacleChance = 0.1f;
+    [SerializeField] float verticalMovingObstacleChance = 0.1f;
+    [SerializeField] float forwardBackwardMovingObstacleChance = 0.1f; // Ajoutez cette ligne
+
     void Start()
     {
         groundSpawner = GameObject.FindObjectOfType<GroundSpawner>();
     }
+
     private void OnTriggerExit(Collider other)
     {
         groundSpawner.SpawnTile(true);
         Destroy(gameObject, 2);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
     }
-
 
     public void SpawnObstacle()
     {
@@ -35,18 +39,29 @@ public class GroundTile : MonoBehaviour
         {
             obstacleToSpawn = tallObstaclePrefab;
         }
+        else if (random < tallObstacleChance + movingObstacleChance)
+        {
+            obstacleToSpawn = movingObstaclePrefab;
+        }
+        else if (random < tallObstacleChance + movingObstacleChance + verticalMovingObstacleChance)
+        {
+            obstacleToSpawn = verticalMovingObstaclePrefab;
+        }
+        else if (random < tallObstacleChance + movingObstacleChance + verticalMovingObstacleChance + forwardBackwardMovingObstacleChance)
+        {
+            obstacleToSpawn = forwardBackwardMovingObstaclePrefab;
+        }
+
         int obstacleSpawnIndex = Random.Range(2, 5);
         Transform spawnPoint = transform.GetChild(obstacleSpawnIndex).transform;
 
         Instantiate(obstacleToSpawn, spawnPoint.position, Quaternion.identity, transform);
     }
 
-    
-
-    public void SpawnCoins ()
+    public void SpawnCoins()
     {
-        int coinsToSpawn = 10;
-        for(int i = 0; i < coinsToSpawn; i++)
+        int coinsToSpawn = 5;
+        for (int i = 0; i < coinsToSpawn; i++)
         {
             GameObject temp = Instantiate(coinPrefab);
             temp.transform.position = GetRandomPointInCollider(GetComponent<Collider>());
@@ -59,7 +74,7 @@ public class GroundTile : MonoBehaviour
             Random.Range(collider.bounds.min.x, collider.bounds.max.x),
             Random.Range(collider.bounds.min.y, collider.bounds.max.y),
             Random.Range(collider.bounds.min.z, collider.bounds.max.z)
-            );
+        );
         if (point != collider.ClosestPoint(point))
         {
             point = GetRandomPointInCollider(collider);

@@ -183,7 +183,13 @@ MonoBehaviour:
   coinPrefab: {fileID: 7822003520714280470, guid: 35e2c45f7a78df04c9d880d5dedb19ad, type: 3}
   obstaclePrefab: {fileID: 3950984899076090304, guid: 70f08e29f275bd54fa673718669aaec5, type: 3}
   tallObstaclePrefab: {fileID: 3950984899076090304, guid: 481e4ea8e7f67d4488a10d7ae5824eea, type: 3}
+  movingObstaclePrefab: {fileID: 3950984899076090304, guid: 81a9c326921b71346addafd7d70d34dc, type: 3}
+  verticalMovingObstaclePrefab: {fileID: 3950984899076090304, guid: af29e9f90a15b9f43a140d0e35094d30, type: 3}
+  forwardBackwardMovingObstaclePrefab: {fileID: 3950984899076090304, guid: 0c2ad62aa43674c4d95095ac9f4735ed, type: 3}
   tallObstacleChance: 0.2
+  movingObstacleChance: 0.1
+  verticalMovingObstacleChance: 0.1
+  forwardBackwardMovingObstacleChance: 0.1
 --- !u!1 &1786834871305988925
 GameObject:
   m_ObjectHideFlags: 0

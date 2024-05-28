@@ -60,11 +60,13 @@
   <ItemGroup>
     <Compile Include="Assets\Spripts\Ennemies.cs" />
     <Compile Include="Assets\Spripts\GameManager.cs" />
-    <Compile Include="Assets\Spripts\Mur.cs" />
     <Compile Include="Assets\Spripts\CameraFollow.cs" />
     <Compile Include="Assets\Spripts\Obstacle.cs" />
     <Compile Include="Assets\Spripts\PlayerMovement.cs" />
     <Compile Include="Assets\Spripts\Coin.cs" />
+    <Compile Include="Assets\Spripts\ForwardBackwardMovingObstacle.cs" />
+    <Compile Include="Assets\Spripts\VerticalMovingObstacl.cs" />
+    <Compile Include="Assets\Spripts\MovingObstacle.cs" />
     <Compile Include="Assets\Spripts\MainMenu.cs" />
     <Compile Include="Assets\Spripts\GroundTile.cs" />
     <Compile Include="Assets\Spripts\GroundSpawner.cs" />

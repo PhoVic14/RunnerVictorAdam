@@ -355,13 +355,15 @@
 "Assets/Spripts/CameraFollow.cs"
 "Assets/Spripts/Coin.cs"
 "Assets/Spripts/Ennemies.cs"
+"Assets/Spripts/ForwardBackwardMovingObstacle.cs"
 "Assets/Spripts/GameManager.cs"
 "Assets/Spripts/GroundSpawner.cs"
 "Assets/Spripts/GroundTile.cs"
 "Assets/Spripts/MainMenu.cs"
-"Assets/Spripts/Mur.cs"
+"Assets/Spripts/MovingObstacle.cs"
 "Assets/Spripts/Obstacle.cs"
 "Assets/Spripts/PlayerMovement.cs"
+"Assets/Spripts/VerticalMovingObstacl.cs"
 -langversion:9.0
 
 /deterministic

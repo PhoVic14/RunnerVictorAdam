@@ -22,10 +22,9 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         if (!alive) return;
-        
+
         Vector3 forwardMove = transform.forward * speed * Time.fixedDeltaTime;
         Vector3 horizontalMove = transform.right * horizontalInput * speed * Time.fixedDeltaTime * horizontalMultiplier;
-        Vector3 position = transform.right * horizontalInput * speed * Time.fixedDeltaTime * horizontalMultiplier;
         rb.MovePosition(rb.position + forwardMove + horizontalMove);
     }
 
@@ -33,13 +32,13 @@ public class PlayerMovement : MonoBehaviour
     {
         horizontalInput = Input.GetAxis("Horizontal");
 
-        if (Input.GetKeyDown(KeyCode.Space) && !hasJumped && IsGrounded()) // Vérifier si le joueur peut sauter
+        if (Input.GetKeyDown(KeyCode.Space) && !hasJumped && IsGrounded())
         {
             Jump();
             hasJumped = true;
         }
 
-        if (IsGrounded()) // Réinitialiser hasJumped lorsque le joueur touche le sol
+        if (IsGrounded())
         {
             hasJumped = false;
         }
@@ -72,10 +71,22 @@ public class PlayerMovement : MonoBehaviour
         bool grounded = Physics.Raycast(transform.position, Vector3.down, (height / 2) + 0.1f, groundMask);
         return grounded;
     }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            Debug.Log("Collision with wall detected!");
+            // Arrêter le mouvement
+            rb.velocity = Vector3.zero;
+            // Si nécessaire, ajustez la position du joueur pour éviter qu'il ne passe à travers le mur
+            Vector3 closestPoint = collision.collider.ClosestPoint(transform.position);
+            transform.position = new Vector3(closestPoint.x, transform.position.y, closestPoint.z - 0.5f);
+        }
+    }
+
     public Rigidbody GetRigidbody()
     {
         return rb;
     }
-
-
 }
