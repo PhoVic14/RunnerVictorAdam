@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VerticalMovingObstacl : MonoBehaviour
+public class VerticalMovingObstacle : MonoBehaviour
 {
     public float speed = 3f; // Vitesse de déplacement de l'obstacle
     public float lowerLimit = 0f; // Limite inférieure
@@ -30,6 +30,18 @@ public class VerticalMovingObstacl : MonoBehaviour
         else if (transform.position.y <= lowerLimit)
         {
             movingUp = true;
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            PlayerMovement playerMovement = collision.gameObject.GetComponent<PlayerMovement>();
+            if (playerMovement != null)
+            {
+                playerMovement.Die();
+            }
         }
     }
 }

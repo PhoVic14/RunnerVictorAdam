@@ -28,17 +28,17 @@ public class PlayerMovement : MonoBehaviour
         rb.MovePosition(rb.position + forwardMove + horizontalMove);
     }
 
-    void Update()
+    private void Update()
     {
         horizontalInput = Input.GetAxis("Horizontal");
 
-        if (Input.GetKeyDown(KeyCode.Space) && !hasJumped && IsGrounded())
+        if (Input.GetKeyDown(KeyCode.Space) && !hasJumped && IsGrounded()) // Vérifier si le joueur peut sauter
         {
             Jump();
             hasJumped = true;
         }
 
-        if (IsGrounded())
+        if (IsGrounded()) // Réinitialiser hasJumped lorsque le joueur touche le sol
         {
             hasJumped = false;
         }
@@ -52,41 +52,26 @@ public class PlayerMovement : MonoBehaviour
     public void Die()
     {
         alive = false;
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlayPlayerDeathSound();
+        }
         Invoke("Restart", 2);
     }
 
-    void Restart()
+    private void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    void Jump()
+    private void Jump()
     {
         rb.AddForce(Vector3.up * jumpForce);
     }
 
-    bool IsGrounded()
+    private bool IsGrounded()
     {
         float height = GetComponent<Collider>().bounds.size.y;
-        bool grounded = Physics.Raycast(transform.position, Vector3.down, (height / 2) + 0.1f, groundMask);
-        return grounded;
-    }
-
-    void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Wall"))
-        {
-            Debug.Log("Collision with wall detected!");
-            // Arrêter le mouvement
-            rb.velocity = Vector3.zero;
-            // Si nécessaire, ajustez la position du joueur pour éviter qu'il ne passe à travers le mur
-            Vector3 closestPoint = collision.collider.ClosestPoint(transform.position);
-            transform.position = new Vector3(closestPoint.x, transform.position.y, closestPoint.z - 0.5f);
-        }
-    }
-
-    public Rigidbody GetRigidbody()
-    {
-        return rb;
+        return Physics.Raycast(transform.position, Vector3.down, (height / 2) + 0.1f, groundMask);
     }
 }

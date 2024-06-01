@@ -32,4 +32,16 @@ public class MovingObstacle : MonoBehaviour
             movingRight = true;
         }
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            PlayerMovement playerMovement = collision.gameObject.GetComponent<PlayerMovement>();
+            if (playerMovement != null)
+            {
+                playerMovement.Die();
+            }
+        }
+    }
 }

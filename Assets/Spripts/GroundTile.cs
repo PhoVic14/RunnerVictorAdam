@@ -10,11 +10,12 @@ public class GroundTile : MonoBehaviour
     [SerializeField] GameObject tallObstaclePrefab;
     [SerializeField] GameObject movingObstaclePrefab;
     [SerializeField] GameObject verticalMovingObstaclePrefab;
-    [SerializeField] GameObject forwardBackwardMovingObstaclePrefab; // Ajoutez cette ligne
+    [SerializeField] GameObject forwardBackwardMovingObstaclePrefab;
+    [SerializeField] GameObject rampPrefab; // Ajoutez cette ligne
     [SerializeField] float tallObstacleChance = 0.2f;
     [SerializeField] float movingObstacleChance = 0.1f;
     [SerializeField] float verticalMovingObstacleChance = 0.1f;
-    [SerializeField] float forwardBackwardMovingObstacleChance = 0.1f; // Ajoutez cette ligne
+    [SerializeField] float forwardBackwardMovingObstacleChance = 0.1f;
 
     void Start()
     {
@@ -55,7 +56,15 @@ public class GroundTile : MonoBehaviour
         int obstacleSpawnIndex = Random.Range(2, 5);
         Transform spawnPoint = transform.GetChild(obstacleSpawnIndex).transform;
 
-        Instantiate(obstacleToSpawn, spawnPoint.position, Quaternion.identity, transform);
+        Vector3 spawnPosition = spawnPoint.position;
+
+        // Ajouter un décalage à la position Y pour lever l'obstacle
+        if (obstacleToSpawn == tallObstaclePrefab)
+        {
+            spawnPosition.y += 1f; // Ajuster cette valeur selon vos besoins
+        }
+
+        Instantiate(obstacleToSpawn, spawnPosition, Quaternion.identity, transform);
     }
 
     public void SpawnCoins()

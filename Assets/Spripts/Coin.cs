@@ -21,16 +21,19 @@ public class Coin : MonoBehaviour
 
         GameManager.inst.IncrementScore();
 
+        // Jouer le son de la pièce
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlayCoinCollectSound();
+        }
 
+        // Désactiver le rendu de la pièce et le collider pour éviter d'autres collisions
+        GetComponent<Renderer>().enabled = false;
+        GetComponent<Collider>().enabled = false;
+
+        // Détruire l'objet après la fin du son
         Destroy(gameObject);
     }
-
-
-    void Start()
-    {
-        
-    }
-
 
     void Update()
     {
