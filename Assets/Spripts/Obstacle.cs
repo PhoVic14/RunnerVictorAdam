@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using Dan.Main;
+
 
 public class Obstacle : MonoBehaviour
 {
@@ -15,6 +18,8 @@ public class Obstacle : MonoBehaviour
     {
         if (collision.gameObject.name == "Player")
         {
+
+            SceneManager.LoadScene(2);
             playerMovement.Die();
         }
     }
@@ -22,6 +27,6 @@ public class Obstacle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

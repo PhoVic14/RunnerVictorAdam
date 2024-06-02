@@ -61,7 +61,7 @@ public class GroundTile : MonoBehaviour
         // Ajouter un décalage à la position Y pour lever l'obstacle
         if (obstacleToSpawn == tallObstaclePrefab)
         {
-            spawnPosition.y += 1f; // Ajuster cette valeur selon vos besoins
+            spawnPosition.y += 1f;
         }
 
         Instantiate(obstacleToSpawn, spawnPosition, Quaternion.identity, transform);

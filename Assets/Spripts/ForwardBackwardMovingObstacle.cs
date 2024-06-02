@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ForwardBackwardMovingObstacle : MonoBehaviour
 {
@@ -40,6 +41,7 @@ public class ForwardBackwardMovingObstacle : MonoBehaviour
             PlayerMovement playerMovement = collision.gameObject.GetComponent<PlayerMovement>();
             if (playerMovement != null)
             {
+                SceneManager.LoadScene(2);
                 playerMovement.Die();
             }
         }

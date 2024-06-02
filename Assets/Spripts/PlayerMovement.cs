@@ -24,12 +24,24 @@ public class PlayerMovement : MonoBehaviour
         if (!alive) return;
 
         Vector3 forwardMove = transform.forward * speed * Time.fixedDeltaTime;
-        Vector3 horizontalMove = transform.right * horizontalInput * speed * Time.fixedDeltaTime * horizontalMultiplier;
+        Vector3 horizontalMove = Vector3.zero;
+
+        if (horizontalInput != 0)
+        {
+            if ((horizontalInput < 0 && this.gameObject.transform.position.x > LevelBoundary.leftSide) ||
+                (horizontalInput > 0 && this.gameObject.transform.position.x < LevelBoundary.rightSide))
+            {
+                horizontalMove = transform.right * horizontalInput * speed * Time.fixedDeltaTime * horizontalMultiplier;
+            }
+        }
+
         rb.MovePosition(rb.position + forwardMove + horizontalMove);
     }
 
     private void Update()
     {
+        if (!alive) return;
+
         horizontalInput = Input.GetAxis("Horizontal");
 
         if (Input.GetKeyDown(KeyCode.Space) && !hasJumped && IsGrounded()) // Vérifier si le joueur peut sauter
